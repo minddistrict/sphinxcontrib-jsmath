@@ -13,7 +13,7 @@ from sphinx.locale import get_translation
 from sphinx.util.math import get_node_equation_number
 from sphinx.writers.html import HTMLTranslator
 
-__version__ = '1.0.2'
+__version__ = '1.0.2+md.1'
 __version_info__ = (1, 0, 2)
 
 package_dir = path.abspath(path.dirname(__file__))
