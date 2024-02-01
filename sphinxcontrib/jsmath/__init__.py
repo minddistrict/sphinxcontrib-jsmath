@@ -1,7 +1,7 @@
 """Set up everything for use of JSMath to display math in HTML via JavaScript."""
 
 from os import path
-from typing import Any, cast
+from typing import cast
 
 from docutils import nodes
 from sphinx.application import Sphinx
@@ -13,7 +13,7 @@ from sphinx.locale import get_translation
 from sphinx.util.math import get_node_equation_number
 from sphinx.writers.html import HTMLTranslator
 
-__version__ = '1.0.2+md.1'
+__version__ = '1.0.2+md.2'
 __version_info__ = (1, 0, 2)
 
 package_dir = path.abspath(path.dirname(__file__))
@@ -68,14 +68,14 @@ def install_jsmath(app: Sphinx, env: BuildEnvironment) -> None:
         builder.add_js_file(app.config.jsmath_path)  # type: ignore
 
 
-def setup(app: Sphinx) -> dict[str, Any]:
+def setup(app: Sphinx):
     app.require_sphinx('2.0')
     app.add_message_catalog(__name__, path.join(package_dir, 'locales'))
     app.add_html_math_renderer('jsmath',
                                (html_visit_math, None),
                                (html_visit_displaymath, None))
 
-    app.add_config_value('jsmath_path', '', False)
+    app.add_config_value('jsmath_path', '', False)  # type: ignore
     app.connect('env-updated', install_jsmath)
     return {
         'version': __version__,
